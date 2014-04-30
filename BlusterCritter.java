@@ -26,12 +26,15 @@ import java.awt.Color;
 
 public class BlusterCritter extends Critter{
 
+    //courage will store the value of c
     private int courage;
     
     public BlusterCritter(int c){
-	super();
+	super(); // the rest of the constructor besides the assignemnt of c will fuction as the superclass constructor
 	courage = c;
     }
+
+    /* getActors() creates an ArrayList of all the Actors that are within 2 rows and 2 columns from the blusterCritter not including itself */
 
     public ArrayList<Actor> getActors(){
 	Location loc = getLocation();
@@ -50,6 +53,7 @@ public class BlusterCritter extends Critter{
 	return actors;
     }
 
+    /* if the size of the ArrayList created in getActors() is less than courage the blusterCritter will get Critter but if the size is greater than or equal to courage the blusterCritter will get darker()*/
     public void processActors(ArrayList<Actor> actors){
 	int s = actors.size();
 	if (s < courage){
@@ -60,6 +64,7 @@ public class BlusterCritter extends Critter{
 	}
     }
 
+    /*helper method to make the color darker */
     public void darker(){
 	Color c = getColor();
 	int red = (int) (c.getRed() * .75);
@@ -68,6 +73,7 @@ public class BlusterCritter extends Critter{
 	setColor(new Color(red, green, blue));
     }
 
+    /* helper method to make the color brighter*/
     public void brighter(){
 	Color c = getColor();
 	int red = c.getRed();
