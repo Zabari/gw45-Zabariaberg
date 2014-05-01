@@ -1,3 +1,36 @@
+/*****************************************************************
+ * NAME gw45-Zabariaberg (Maria Kollaros, Coby Goldberg, Daniel Zabari)
+ * APCS pd #9
+ * HW## 35 GridWorld, Part 4
+ * 2014-04-30
+ *
+ * class MedusaCritter
+ *
+ * BEACUASE:
+ * We like mythology and we thought it was really cool that MedusaCritter turns other actors (with some exceptions) to rock when they face each other (or look at each other), just like in myhtology Medusa turned people to stone with one look in the eyes.
+ *
+ * SPECIFICATIONS:
+ *MedusaCritter Specs:
+  -MedusaCritter can turn the actor in front of it into a rock by removing it and spawning a rock object    on the location.
+   Class MedusaCritter inherits all methods and variables/constants of superclasses Critter and Actor. B    elow are overwritten methods
+
+-processActors(Actor a){//Overwrites processActors() of superclass Critter
+    /*If the actorâ€™s direction is the direction of the medusaâ€™s + 180 && the actor is directly in f      ront of the medusa (basically, eye contact and one space away), the actor in front will be removed       and replaced by a rock UNLESS it is a Critter or Rock
+}
+-ArrayList<Actor> getActors(){//Overwrites getActors() of superclass Critter
+    /*Only obtains critter directly in front for processing. Dependent on direction of MedusaCritter exec      uting code. Returns ArrayList consisting of all objects one space ahead
+}
+ *
+ * TEST CASES:
+ * <test cases provided>
+ *
+ * ERRATA:
+ * <any extra test cases, any developer decisions, or
+ * other judgment calls your team made to get the class working...>
+ *****************************************************************/
+public class ___Critter ... {
+}
+
 /*
 * AP(r) Computer Science GridWorld Case Study:
 * Copyright(c) 2005-2006 Cay S. Horstmann (http://horstmann.com)
