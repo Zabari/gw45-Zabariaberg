@@ -16,24 +16,53 @@
 * @author Cay Horstmann
 */
 
+
 import info.gridworld.actor.Actor;
 import info.gridworld.actor.Critter;
 import info.gridworld.grid.Location;
+import info.gridworld.grid.Grid;
+import info.gridworld.actor.Rock;
 import java.util.ArrayList;
 import java.awt.Color;
 
 /* class BlusterCritter is a subclass of Critter*/
 
-public class Medusa extends Critter{
+public class MedusaCritter extends Critter{
 
     public ArrayList<Actor> getActors(){
 	int a = getDirection();
+	System.out.println(a);
 	Location b = getLocation();
-	Location c = b.getAdjacentLocation(int direction);
-	Grid d = getGrid();
+	Location c = b.getAdjacentLocation(a);
+	Grid<Actor> d = getGrid();
 	Actor e = d.get(c);
+	ArrayList<Actor> f = new ArrayList<Actor>();
+	if (e != null && d.isValid(c)){
+	    f.add(e);
+	}
+	System.out.println(f);
+	return f;
+	
+    }
+
+    public void processActors (ArrayList<Actor> a){
+	if( a.size() == 0)
+	    return;
+	int dir = a.get(0).getDirection();
+	System.out.println(dir);
+	if (dir == getDirection() + 180){
+	    if (!(a.get(0) instanceof Rock) && !(a.get(0) instanceof Critter)){
+		Location b = a.get(0).getLocation();
+		Rock tom = new Rock();
+		tom.putSelfInGrid(getGrid(), b);
+	    }
+	}
     }
 }
+		
+		
+	
+	
 	
 	
 
