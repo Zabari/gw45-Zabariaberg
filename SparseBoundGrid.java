@@ -84,7 +84,7 @@ public class SparseBoundedGrid<E> extends AbstractGrid<E>{
 	int r = loc.getRow();
 	int c = loc.getCol();
 	if (act == null){ // like in boundedGrid, object added cannot be null
-	    throw new NullPointerException("obj == null");
+	    throw new NullPointerException("act == null");
 	}
 	E ret = this.remove(loc); // remove and return the old object
 	ArrayList<OccupantArray> cur = occupantArray.get(r);
