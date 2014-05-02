@@ -2,7 +2,7 @@ public class UnboundedGrid16v16{
     private Object[][] occupantArray; //Arrays cant store generic type
 
     public UnboundedGrid16v16(){
-	occupantArray[16][16];
+	occupantArray = new Object[16][16];
     }      
 
     public int getNumRows(){ 
@@ -13,8 +13,9 @@ public class UnboundedGrid16v16{
 	return -1; 
     }
 
+    // will return true so long as neither loc.getRow() nor loc.getCol() is negative
     public boolean isValid(Location loc){
-	return 0 <= loc.getRow() && 0 <= loc.getCol(); // can't be negative for this one
+	return 0 <= loc.getRow() && 0 <= loc.getCol();
     }
 
     public ArrayList<Location> getOccupiedLocations(){
@@ -22,7 +23,7 @@ public class UnboundedGrid16v16{
 	// traverse the array. It is square, so use same length both times
 	for (int i = 0; i < occupantArray.length; i++){
 	    for (int j = 0; j < occupantArray.length; j++){
-		Location loc = new Location(r, c);
+		Location loc = new Location(i, j);
 		if (get(loc) != null){
 		    locs.add(loc); // add if it isn't null
 		}
@@ -40,7 +41,7 @@ public class UnboundedGrid16v16{
 	if (r >= occupantArray.length || c >= occupantArray.length){
 	    return null; // outside array bounds but positive is simply null
 	}
-	return (E)occupantArray[r][c]; // cast object to E
+	return (E)(occupantArray[r][c]); // cast object to E for returning
     }
 
     public E put(Location loc, E actor){
