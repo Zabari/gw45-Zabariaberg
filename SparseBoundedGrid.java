@@ -75,6 +75,7 @@ public class SparseBoundedGrid<E> extends AbstractGrid<E>{
 		return (E)(temp); // OccupantInCol is not E, must be cast
 	    }
 	}
+	return null;
     }
 
     public E put(Location loc, E act){
@@ -100,7 +101,7 @@ public class SparseBoundedGrid<E> extends AbstractGrid<E>{
 	    LinkedList<OccupantInCol> cur = occupantArray.get(i);
 	    if (cur != null){ // ignore empty rows
 		for (OccupantInCol temp : cur){ // only looks at spaces with occupants
-		    Location l = new Location(i, temp.getColumns()); // What is that occupant's location?
+		    Location l = new Location(i, temp.getColumn()); // What is that occupant's location?
 		    locs.add(l); // add it to the list
 		}
 	    }
