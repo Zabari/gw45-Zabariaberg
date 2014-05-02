@@ -22,14 +22,8 @@
 }
  *
  * TEST CASES:
- * <test cases provided>
- *
- * ERRATA:
- * <any extra test cases, any developer decisions, or
- * other judgment calls your team made to get the class working...>
+ * Test cases are provided in the runner class.
  *****************************************************************/
-public class ___Critter ... {
-}
 
 /*
 * AP(r) Computer Science GridWorld Case Study:
