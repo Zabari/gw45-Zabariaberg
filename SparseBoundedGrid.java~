@@ -6,7 +6,7 @@ import java.io.*;
 
 public class SparseBoundedGrid<E> extends AbstractGrid<E>{
 
-    private ArrayList<ArrayList> occupantArray; // broad ArrayList containing all elements, which are stored in internal ArrayLists as cols
+    private ArrayList<LinkedList<OccupantInCol>> occupantArray; // broad ArrayList containing all elements, which are stored in internal LinkedLists as cols
     private int cols;
     private int rows;
 
@@ -15,9 +15,9 @@ public class SparseBoundedGrid<E> extends AbstractGrid<E>{
 	if (r > 0 && c >0){
 	    rows = r;
 	    cols = c;
-	    occupantArray = new ArrayList<ArrayList>(rows);
+	    occupantArray = new ArrayList<LinkedList<OccupantInCol>>(rows);
 	    for (int i = 0; i < rows; i++){
-		occupantArray.add(new OccupantInCol(null,0));
+		occupantArray.add(new LinkedList<OccupantInCol>());
 	    }
 	}
         else if (r <= 0){
@@ -48,9 +48,9 @@ public class SparseBoundedGrid<E> extends AbstractGrid<E>{
 	}
 	int r = loc.getRow();
 	int c = loc.getCol();
-	ArrayList<OccupantInCol> thisRow = occupantArray.get(r);
+	LinkedList<OccupantInCol> thisRow = occupantArray.get(r);
 	for (OccupantInCol temp : thisRow){
-	    if (temp.getCol() == c){
+	    if (temp.getColumn() == c){
 		E ret = get(loc);
 		thisRow.remove();
 		return ret;
@@ -65,13 +65,13 @@ public class SparseBoundedGrid<E> extends AbstractGrid<E>{
 	}
 	int r = loc.getRow();
 	int c = loc.getCol();
-	ArrayList<OccupantInCol> thisRow = occupantArray.get(r); // the row to work in
+        LinkedList<OccupantInCol> thisRow = occupantArray.get(r); // the row to work in
 	if (thisRow == null){
 	    return null;
 	}
 	// walk through until at correct column
 	for (OccupantInCol temp : thisRow){
-	    if (temp.getCol() == c){
+	    if (temp.getColumn() == c){
 		return (E)(temp); // OccupantInCol is not E, must be cast
 	    }
 	}
@@ -87,7 +87,7 @@ public class SparseBoundedGrid<E> extends AbstractGrid<E>{
 	    throw new NullPointerException("act == null");
 	}
 	E ret = this.remove(loc); // remove and return the old object
-	ArrayList<OccupantArray> cur = occupantArray.get(r);
+	LinkedList<OccupantInCol> cur = occupantArray.get(r);
 	OccupantInCol toAdd = new OccupantInCol(act, c);
 	cur.add(toAdd);
 	return ret;
@@ -97,10 +97,10 @@ public class SparseBoundedGrid<E> extends AbstractGrid<E>{
     public ArrayList<Location> getOccupiedLocations(){
 	ArrayList<Location> locs = new ArrayList<Location>();
 	for (int i = 0; i < rows; i++){
-	    ArrayList<OccupantInCol> cur = OccupantArray.get(i);
+	    LinkedList<OccupantInCol> cur = occupantArray.get(i);
 	    if (cur != null){ // ignore empty rows
 		for (OccupantInCol temp : cur){ // only looks at spaces with occupants
-		    Location l = new Location(temp.getNumRow(), temp.getNumCol()); // What is that occupant's location?
+		    Location l = new Location(temp.getNumRow(), temp.getNumColumns()); // What is that occupant's location?
 		    locs.add(l); // add it to the list
 		}
 	    }
