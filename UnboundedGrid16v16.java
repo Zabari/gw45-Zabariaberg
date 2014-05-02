@@ -1,4 +1,10 @@
-public class UnboundedGrid16v16{
+import info.gridworld.grid.Grid; 
+import info.gridworld.grid.AbstractGrid; 
+import info.gridworld.grid.Location; 
+import java.util.*;
+import java.io.*;
+
+public class UnboundedGrid16v16<E> extends AbstractGrid<E>{
     private Object[][] occupantArray; //Arrays cant store generic type
 
     public UnboundedGrid16v16(){
